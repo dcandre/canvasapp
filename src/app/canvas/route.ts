@@ -2,19 +2,20 @@
 export async function GET(req: Request) {
     let message = 'yo!';
     try {
-        const fu = await req.json();
-        message = JSON.stringify(fu);
+        const fu: string = await req.json();
+        message = fu;
     }
     catch(e) {
         if (typeof e === "string") {
-        message = e; // works, `e` narrowed to string
+            message = e; // works, `e` narrowed to string
         } else if (e instanceof Error) {
             message = e.message // works, `e` narrowed to Error
         }
     }
     
     return new Response(message, {
-        status: 403
+        status: 200,
+        headers: { 'Cache-Control': 'no-store', 'Access-Control-Allow-Origin': origin }
     });
 }
 
