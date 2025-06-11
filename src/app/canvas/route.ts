@@ -1,4 +1,4 @@
-import crypto, { sign } from "crypto";
+import crypto from "crypto";
 
 export async function POST(req: Request) {
     const body: { signed_request?: string } = await req.json();
