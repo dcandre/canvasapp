@@ -1,4 +1,9 @@
 
+export async function GET(req: Request) {
+    return new Response('Hey!', {
+        status: 200
+    });
+}
 
 export async function POST(req: Request) {
     const sdk = process.env.SDK_URL;
