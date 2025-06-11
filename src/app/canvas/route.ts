@@ -3,7 +3,7 @@
 export async function GET(req: Request) {
     let message = 'yo!';
     try {
-        message = 'in';
+        message = req.headers.keys.toString();
     }
     catch(e) {
         if (typeof e === "string") {
