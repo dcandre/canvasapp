@@ -1,10 +1,9 @@
-import crypto from "crypto";
-import { json } from "stream/consumers";
+
 
 export async function POST(req: Request) {
     const sdk = process.env.SDK_URL;
     const origin = process.env.ORIGIN_URL ?? '';
-    const secret = process.env.CONSUMER_SECRET ?? '';
+    
     let message = 'yo!';
     try {
         let fu = await req.json();
@@ -17,6 +16,8 @@ export async function POST(req: Request) {
             message = e.message // works, `e` narrowed to Error
         }
     }
+
+    message = message;
     const html = `<!DOCTYPE html>
     <html>
     <head>
