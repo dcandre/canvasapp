@@ -1,22 +1,26 @@
 
 
-export async function GET(req: Request) {
+export async function GET() {
+    const sdk = process.env.SDK_URL;
     const origin = process.env.ORIGIN_URL ?? '';
-    let message = 'yo!';
-    try {
-        message = req.headers.keys.toString();
-    }
-    catch(e) {
-        if (typeof e === "string") {
-            message = e; // works, `e` narrowed to string
-        } else if (e instanceof Error) {
-            message = e.message // works, `e` narrowed to Error
-        }
-    }
     
-    return new Response(message, {
+    
+    const html = `<!DOCTYPE html>
+    <html>
+    <head>
+    <script type="text/javascript" src="${sdk}"></script>
+    </head>
+    <body>
+    <h1>Hi Derek!</h1>
+    <script type="text/javascript">
+    
+    </script>
+    </body>
+    </html>`;
+    
+    return new Response(html, {
         status: 200,
-        headers: { 'Cache-Control': 'no-store', 'Access-Control-Allow-Origin': origin }
+        headers: { 'Content-Type': 'text/html', 'Access-Control-Allow-Origin': origin }
     });
 }
 
