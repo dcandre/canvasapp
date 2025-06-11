@@ -1,6 +1,19 @@
 
 export async function GET(req: Request) {
-    return new Response('Hey!', {
+    let message = 'yo!';
+    try {
+        const fu = await req.json();
+        message = JSON.stringify(fu);
+    }
+    catch(e) {
+        if (typeof e === "string") {
+        message = e; // works, `e` narrowed to string
+        } else if (e instanceof Error) {
+            message = e.message // works, `e` narrowed to Error
+        }
+    }
+    
+    return new Response(message, {
         status: 200
     });
 }
