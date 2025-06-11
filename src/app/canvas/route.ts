@@ -1,9 +1,9 @@
 
+
 export async function GET(req: Request) {
     let message = 'yo!';
     try {
-        const fu: string = await req.json();
-        message = fu;
+        message = 'in';
     }
     catch(e) {
         if (typeof e === "string") {
