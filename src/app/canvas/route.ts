@@ -39,7 +39,7 @@ export async function GET() {
     <h2>Hi Derek!</h2>
     <div
     id="drop_zone"
-    style="border: 5px solid black;width:200px;height:100px;"
+    style="border: 2px solid black;width:200px;height:70px;"
     ondrop="dropHandler(event);"
     ondragover="dragOverHandler(event);">
         <div id="drop_zone_message">Drag one or more files here.</div>
