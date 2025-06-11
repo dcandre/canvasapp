@@ -6,7 +6,7 @@ export async function POST(req: Request) {
     
     let message = 'yo!';
     try {
-        let fu = await req.json();
+        const fu = await req.json();
         message = JSON.stringify(fu);
     }
     catch(e) {
