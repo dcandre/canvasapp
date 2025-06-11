@@ -1,6 +1,7 @@
 
 
 export async function GET(req: Request) {
+    const origin = process.env.ORIGIN_URL ?? '';
     let message = 'yo!';
     try {
         message = req.headers.keys.toString();
