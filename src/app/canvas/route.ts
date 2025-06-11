@@ -1,4 +1,5 @@
 import crypto from "crypto";
+import { json } from "stream/consumers";
 
 export async function POST(req: Request) {
     const sdk = process.env.SDK_URL;
@@ -6,36 +7,8 @@ export async function POST(req: Request) {
     const secret = process.env.CONSUMER_SECRET ?? '';
     let message = 'yo!';
     try {
-    const body: { signed_request: string } = await req.json();
-
-    if (!body.signed_request) {
-        // return new Response('Bad Request', {
-        //     status: 400
-        // });
-    }
-
-    
-    
-    const [encodedSignature, encodedPayload]: string[] = body.signed_request.split(".");
-    const decodedPayload: string = Buffer.from(encodedPayload, "base64").toString("utf-8");
-    const signed_request: Sfdc.canvas.SignedRequest = JSON.parse(decodedPayload) as Sfdc.canvas.SignedRequest;
-
-    if(signed_request) {
-        
-    }
-
-    const expectedSignature: string = crypto
-            .createHmac("sha256", secret)
-            .update(encodedPayload)
-            .digest("base64");
-
-    if (expectedSignature !== encodedSignature) {
-        // return new Response('Unauthorized', {
-        //     status: 401
-        // });
-    }
-
-    //const name = signed_request.context.user?.firstName;
+        let fu = await req.json();
+        message = JSON.stringify(fu);
     }
     catch(e) {
         if (typeof e === "string") {
