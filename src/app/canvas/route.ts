@@ -8,11 +8,11 @@ export async function POST(req: Request) {
     try {
     const body: { signed_request: string } = await req.json();
 
-    // if (!body.signed_request) {
-    //     return new Response('Bad Request', {
-    //         status: 400
-    //     });
-    // }
+    if (!body.signed_request) {
+        // return new Response('Bad Request', {
+        //     status: 400
+        // });
+    }
 
     
     
@@ -25,13 +25,13 @@ export async function POST(req: Request) {
             .update(encodedPayload)
             .digest("base64");
 
-    // if (expectedSignature !== encodedSignature) {
-    //     return new Response('Unauthorized', {
-    //         status: 401
-    //     });
-    // }
+    if (expectedSignature !== encodedSignature) {
+        // return new Response('Unauthorized', {
+        //     status: 401
+        // });
+    }
 
-    const name = signed_request.context.user?.firstName;
+    //const name = signed_request.context.user?.firstName;
     }
     catch(e) {
         if (typeof e === "string") {
