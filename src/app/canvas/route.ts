@@ -20,6 +20,10 @@ export async function POST(req: Request) {
     const decodedPayload: string = Buffer.from(encodedPayload, "base64").toString("utf-8");
     const signed_request: Sfdc.canvas.SignedRequest = JSON.parse(decodedPayload) as Sfdc.canvas.SignedRequest;
 
+    if(signed_request) {
+        
+    }
+
     const expectedSignature: string = crypto
             .createHmac("sha256", secret)
             .update(encodedPayload)
